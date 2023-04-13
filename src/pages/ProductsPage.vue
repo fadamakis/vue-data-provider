@@ -1,29 +1,20 @@
+<script setup>
+import BoringTable from "@/components/BoringTable.vue";
+import DataProvider from "@/components/DataProvider.ts";
+</script>
+
 <template>
   <div class="container">
-    <BoringTable :items="smartphones" :headers="headers" title="Smartphones" />
-    <BoringTable :items="laptops" :headers="headers" title="Laptops" />
+    <h1>Products Page</h1>
+    <DataProvider category="smartphones" v-slot="{ data, loading }">
+      <BoringTable :items="data" title="Smartphones" v-if="loading" />
+    </DataProvider>
+
+    <DataProvider category="laptops" v-slot="{ data, loading }">
+      <BoringTable :items="data" title="Laptops" v-if="loading" />
+    </DataProvider>
   </div>
 </template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-import BoringTable from "@/components/BoringTable.vue";
-
-const smartphones = ref([]);
-const laptops = ref([]);
-
-async function fetchProducts(category) {
-  const response = await fetch(
-    `https://dummyjson.com/products/category/${category}`
-  ).then((res) => res.json());
-  return response.products;
-}
-
-onMounted(async () => {
-  smartphones.value = await fetchProducts("smartphones");
-  laptops.value = await fetchProducts("laptops");
-});
-</script>
 
 <style scoped lang="scss">
 .container {

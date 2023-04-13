@@ -24,15 +24,15 @@ const headers = ["Title", "Description", "Price", "Rating", "Brand"];
     <tbody>
       <tr v-for="item in items" :key="item.id">
         <td>
-          {{ item["title"] }}
+          {{ item.title }}
         </td>
         <td>
-          {{ item["description"] }}
+          {{ item.description }}
         </td>
-        <td>{{ item["price"] }}€</td>
-        <td>{{ item["rating"] }}✩</td>
+        <td>{{ item.price }}€</td>
+        <td>{{ item.rating }}✩</td>
         <td>
-          {{ item["brand"] }}
+          {{ item.brand }}
         </td>
       </tr>
     </tbody>
